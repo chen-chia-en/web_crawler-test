@@ -1,0 +1,28 @@
+from selenium import webdriver
+import time
+
+
+def search_website_or_fb(keyword):
+    url = 'https://www.google.com.tw'
+    driver = webdriver.Chrome()
+    driver.set_window_size(1024, 960)
+
+    #======================依關鍵字在youtube網站上搜尋===========================
+    driver.get(url)
+    search_website = driver.find_element_by_name("q")
+    search_website.send_keys(keyword)
+
+    search_website.submit()
+
+    driver.refresh()
+    time.sleep(2)
+
+    website_url = driver.find_elements_by_css_selector(".yuRUbf")[1]
+
+    #關閉瀏覽器連線
+    driver.close()
+
+    message = website_url   
+     
+    return message
+    
